@@ -82,6 +82,8 @@
     children.forEach(function (child) {
       renderElementChildren(element, child)
     })
+
+    return element
   }
 
 

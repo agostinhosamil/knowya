@@ -1,5 +1,5 @@
 <?php
 
-function script (string $scriptPath) {
+function script_path (string $scriptPath) {
   return ((defined ("BASE_URL")) ? BASE_URL : "/") . 'https/js/' . $scriptPath;
 }
