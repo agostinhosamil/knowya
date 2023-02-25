@@ -159,6 +159,45 @@
       height: mainImageHeight
     })
 
+    const keyCodes = {
+      RIGHT: 39,
+      LEFT: 37,
+      ESC: 27
+    }
+
+    const windowEventHandlers = {
+      keyDownHandler: useFunction(function keyDownHandler(event) {
+        switch (event.keyCode) {
+          case keyCodes.RIGHT:
+            navigate(1)
+            break;
+          case keyCodes.LEFT:
+            navigate(-1)
+            break;
+        }
+      })
+    }
+
+    Object.keys(windowEventHandlers).forEach(function (handlerName) {
+      const eventName = handlerName.replace(/Handler$/i, '').toLowerCase()
+      const eventHandler = windowEventHandlers[handlerName]
+
+      if ('function' === typeof eventHandler) {
+        window.addEventListener(eventName, eventHandler, true)
+      }
+    })
+
+    window.pageModalCloseHandler = function () {
+      Object.keys(windowEventHandlers).forEach(function (handlerName) {
+        const eventName = handlerName.replace(/Handler$/i, '').toLowerCase()
+        const eventHandler = windowEventHandlers[handlerName]
+
+        if ('function' === typeof eventHandler) {
+          window.removeEventListener(eventName, eventHandler, true)
+        }
+      })
+    }
+
     const controlLeftElement = createElement('img', {
       'src': appConfig.rootPath + 'https/im/arrow-left.svg',
       'onClick': function () {
@@ -443,6 +482,8 @@
 
         if (typeof window.pageModalCloseHandler === 'function') {
           window.pageModalCloseHandler.apply(this, arguments)
+
+          window.pageModalCloseHandler = null
         }
       })
     }

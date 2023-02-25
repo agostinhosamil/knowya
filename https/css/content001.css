@@ -1015,8 +1015,19 @@ div.closeButtonContainer button {
   height: 60px;
 }
 
+@keyframes RotateImage {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .photo-viewer-container .photo-viewer-footer .photo-viewer-list .photo-viewer-list-item div img.selected {
   border: 7px solid green;
+  animation: RotateImage .1s linear 0s;
 }
 
 .photo-viewer-container .photo-viewer-footer .photo-viewer-list .photo-viewer-list-item div img,
