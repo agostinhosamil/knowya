@@ -1,4 +1,10 @@
 (function () {
+  const keyCodes = {
+    RIGHT: 39,
+    LEFT: 37,
+    ESC: 27
+  }
+
   function __d() {
     const args = arguments
 
@@ -145,7 +151,7 @@
     const mainImageWidth = 540
     const mainImageHeight = 540
 
-    const imageStyles = 'width: ' + mainImageWidth + 'px !important; height: ' + mainImageHeight + 'px !important'
+    const imageStyles = 'width: ' + mainImageWidth + 'px; height: ' + mainImageHeight + 'px'
 
     // const mainImageSource = new URL(mainImage.src)
 
@@ -158,12 +164,6 @@
       width: mainImageWidth,
       height: mainImageHeight
     })
-
-    const keyCodes = {
-      RIGHT: 39,
-      LEFT: 37,
-      ESC: 27
-    }
 
     const windowEventHandlers = {
       keyDownHandler: useFunction(function keyDownHandler(event) {
@@ -484,6 +484,12 @@
           window.pageModalCloseHandler.apply(this, arguments)
 
           window.pageModalCloseHandler = null
+        }
+      })
+
+      window.addEventListener('keydown', function (event) {
+        if (event.keyCode === keyCodes.ESC) {
+          modalCloseButton.click()
         }
       })
     }

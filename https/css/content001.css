@@ -1043,7 +1043,7 @@ div.closeButtonContainer button {
 }
 
 .photo-viewer-container .photo-viewer-body .photo-viewer-content div img {
-  width: auto !important;
+  width: 100% !important;
 }
 
 @media (max-width: 700px) {
