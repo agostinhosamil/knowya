@@ -228,10 +228,19 @@
 
   __d('WorkOnModalCloseButton', function () {
     const modalCloseButton = document.querySelector('.closeButtonContainer button')
+    const areaComposerGradient = document.querySelector('.areaComposerGradient')
 
     if (modalCloseButton) {
       modalCloseButton.addEventListener('click', function (event) {
         event.preventDefault()
+
+        if (document.body.classList.contains('areaComposerFocus')) {
+          document.classList.remove('areaComposerFocus')
+        }
+
+        areaComposerGradient.removeAttribute('show')
+
+        areaComposerGradient.innerHTML = ''
 
         if (typeof window.pageModalCloseHandler === 'function') {
           window.pageModalCloseHandler.apply(this, arguments)
