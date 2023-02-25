@@ -1,0 +1,146 @@
+#bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#bg {
+	background-image: url("/blog/https/im/JWnJdks.jpg");
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	background-position: 0% 0%;
+	background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-ms-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+}
+
+#contain {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#contain {
+	z-index: 2;
+}
+
+#AreaLg {
+	width: 410px;
+	height: 460px;
+	background-color: rgba(255, 255, 255, 0.79);
+	border: 1px solid rgba(250, 248, 248, 0.6);
+}
+
+#AreaLg {
+	position: absolute;
+	margin: auto;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+}
+
+.AreaLg-a,
+.AreaLg-b,
+.AreaLg-b-a,
+.AreaLg-b-b,
+.AreaLg-b-b-a {
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+.AreaLg-a {
+	padding: .6em .0em 5.3em;
+	position: relative;
+}
+
+.AreaLg-a-a {
+	width: 150px;
+	height: 150px;
+	background: #fff;
+	border: 1px solid rgba(250, 248, 248, 0.6);
+	position: absolute;
+	margin: auto;
+	left: 0px;
+	right: 0px;
+	margin-top: -80px;
+}
+
+.AreaLg-b-a,
+.AreaLg-b-b {
+	padding: .7em 1em;
+}
+
+.AreaLg-b-a h2 {
+	font: lighter 26px "Harlow Solid Italic";
+	color: rgb(104, 102, 102);
+}
+
+.AreaLg-b-b-a {
+	margin-bottom: .7em
+}
+
+.AreaLg-b-b-a,
+.AreaLg-b-b-a_ {
+	font: lighter 16px "OCR A Extended";
+	color: #444;
+}
+
+.AreaLg-b-b-b {
+	width: 100%;
+	min-height: 20px;
+	font: lighter 17px "Lucida Console";
+	color: #555;
+	background: transparent none repeat scroll 0% 0%;
+	border-style: solid;
+	border-width: 0px 1px 1px;
+	border-color: #ccc;
+	box-sizing: border-box;
+	padding: .6em;
+}
+
+.AreaLg-b-b-b:focus {
+	border-color: rgb(146, 146, 146);
+}
+
+.AreaLg-b-b-a-a {
+	display: inline-block;
+}
+
+.AreaLg-b-b-a-a,
+.AreaLg-b-b-a_ {
+	display: inline-block;
+}
+
+label {
+	cursor: pointer;
+}
+
+.AreaLg-b-b-b_ {
+	padding: .8em 1.7em;
+	border: 1px solid #eee;
+	background-color: rgba(255, 255, 255, 0.89);
+}
+
+.AreaLg-b-b-b_a {
+	display: inline-block;
+	background: transparent none repeat scroll 0% 0%;
+}
+
+.AreaLg-b-b-b_a-a {
+	font: lighter 16px "Segoe", "Arial", tahoma, verdana, sans-serif;
+	color: #555;
+}
+
+.AreaLg-b-b-b_a-a:hover {
+	text-decoration: underline;
+}

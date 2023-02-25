@@ -1,0 +1,1 @@
+$str = preg_replace("(<italic>.*[^<\/italic])", '<span class="nws-body-italictext">'.strip_tags('\\0').'</span>', str_replace("[italic]", "<italic>", str_replace("[/italic]", "</italic>", $str)));

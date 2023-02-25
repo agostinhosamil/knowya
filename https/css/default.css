@@ -1,0 +1,315 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+dl,
+dd,
+dt,
+pre,
+form,
+label,
+canvas,
+frame,
+iframe,
+ul,
+ol,
+figure,
+fieldset {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	text-align: left;
+	background-color: #fbfbfb;
+}
+
+input,
+textarea {
+	outline: 0px !important;
+}
+
+* {
+	list-style: none;
+}
+
+.semfundo {
+	background: transparent none repeat scroll 0% 0%;
+}
+
+#container {
+	width: 549px;
+	height: 3000px;
+	background: transparent none repeat scroll 0% 0%;
+	position: relative;
+	margin-left: 162px;
+}
+
+.a,
+.b,
+.c,
+.d,
+#Topo-feed,
+.postagem,
+#comentario,
+.strpgc-a-a-a,
+.strpgc-a-a-b-a,
+.m,
+.strpgc-a-a-c,
+.conteudo_post,
+.v,
+.opcoes_post,
+.div_verMaisCom,
+.comentario,
+.comentario .-a,
+.area_comment,
+.area_comm,
+#cmpsr,
+.sdbr-c,
+.sdbr-c-a,
+.sdbr-c-a-a,
+.sdbr-c-b,
+.strpgc-a-a {
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	display: inline-block;
+}
+
+[type=submit],
+[type=button],
+[type=radio],
+[type=checkbox],
+button {
+	cursor: pointer
+}
+
+#Topo-feed,
+.postagem {
+	background: #fff none repeat scroll 0% 0%;
+	padding: .7em;
+	border: 1px solid #d7d7d7;
+}
+
+#Topo-feed {
+	margin: .6em .0em;
+}
+
+.postagem {
+	margin: .0em .0em .6em;
+	border-radius: 4px;
+}
+
+#Topo-feed .text {
+	font: lighter 17px sans-serif, verdana;
+	color: #555;
+}
+
+.m {
+	padding: .0em .0em .8em;
+}
+
+.n {
+	width: 39px;
+	height: 39px;
+	margin-right: 8px;
+	display: inline-block;
+	float: left;
+}
+
+.o {
+	width: inherit;
+	height: inherit;
+}
+
+.q {
+	display: inline-block;
+	background: transparent none repeat scroll 0% 0%;
+}
+
+.r a {
+	font: lighter 19px "Comic Sans MS";
+	color: rgb(153, 198, 230);
+	text-decoration: none
+}
+
+.r a:hover {
+	text-decoration: underline !important;
+}
+
+.r {
+	word-break: break-all;
+}
+
+.q {
+	display: inline-block;
+	width: 85%;
+	margin-top: -5px;
+}
+
+.conteudo_post {
+	padding-bottom: 13px;
+}
+
+.conteudo_post .s .t {
+	font: lighter 20px "Calibri Light";
+	color: #444;
+}
+
+.v {
+	padding-top: 8px;
+	position: relative;
+}
+
+.w {
+	width: 100%;
+}
+
+.opcoes_post .x .y {
+	display: inline-block;
+	margin: .0px .4em;
+}
+
+a {
+	text-decoration: none
+}
+
+.opcoes_post .x .y .z {
+	font: lighter 15px "Corbel";
+	color: #555;
+	padding: .5em;
+}
+
+.opcoes_post .x .y .z:hover {
+	text-decoration: underline;
+}
+
+#comentarios {
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	background: rgb(243, 243, 243) none repeat scroll 0% 0%;
+	display: inline-block;
+}
+
+.div_comentarios {
+	box-sizing: border-box;
+	border-width: .0px 1px 1px;
+	border-style: solid;
+	border-color: #e0e0e0;
+}
+
+.div_verMaisCom {
+	background: #ffffff;
+	padding: .5em .7em;
+}
+
+.div_verMaisCom li a {
+	font: lighter 15px "Arial";
+	color: #444;
+}
+
+.div_verMaisCom li a:hover,
+.comentario .-a .-a-b .-a-b-a a:hover {
+	text-decoration: underline;
+}
+
+.comentario {
+	padding: .6em .8em;
+	border-style: solid;
+	border-width: 1px .0px;
+	border-color: transparent;
+}
+
+.comentario:hover {
+	border-color: #e0e0e0;
+	background: #fbfbfb none repeat scroll 0% 0%;
+}
+
+.comentario .-a {
+	position: relative;
+}
+
+.comentario .-a .-a-a {
+	width: 45px;
+	height: 45px;
+	float: left;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	margin: .0px 7px .0px .0px;
+}
+
+.comentario .-a .-a-b {
+	display: inline-block;
+}
+
+.comentario .-a .-a-b * {
+	word-break: break-all;
+}
+
+.comentario .-a .-a-b .-a-b-a {
+	margin-bottom: 7px
+}
+
+.comentario .-a .-a-b .-a-b-a a {
+	font: lighter 16px "Lucida Sans";
+	color: #111;
+}
+
+.comentario .-a .-a-b .-a-b-b {
+	display: inline-block;
+	padding: .0px;
+}
+
+.comentario .-a .-a-b .-a-b-b span {
+	font: lighter 15px "Calibri";
+	color: #444;
+}
+
+.opcoes_post {
+	padding: .0em .0em .6em;
+}
+
+.lnk-logo,
+.lnk-logo *,
+.lnk-logo:visited,
+.lnk-logo *:visited,
+.lnk-logo:active,
+.lnk-logo *:active {
+	color: #111;
+}
+
+.area_comment {
+	padding: .8em;
+}
+
+.area_comm {
+	border: 1px solid #e0e0e0;
+	background: #ffffff;
+	padding: .4em;
+}
+
+.Topo-feed-a {
+	color: inherit;
+	font: inherit;
+	display: inline-block;
+	padding: .3em .6em;
+}
+
+.Topo-feed-a:hover {
+	background-color: #555;
+	color: #fff;
+}
+
+.strpgc-a-a {
+	background: rgb(240, 240, 240) none repeat scroll 0% 0%;
+}
+
+.page-main-container-element {
+	width: 100%;
+	position: static;
+	display: flex;
+	justify-content: center;
+}

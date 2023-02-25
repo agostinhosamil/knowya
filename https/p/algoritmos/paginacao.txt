@@ -1,0 +1,12 @@
+total = 27
+
+maximo_a_exibir = 15
+
+imprimidos = 15
+
+restante = (total - maximo_a_exibir)
+
+// Opcao para 'Mais'
+
+se
+	restante > 0;

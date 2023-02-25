@@ -1,0 +1,94 @@
+Ola pessoal
+[BOX]
+	Ola
+[/BOX]
+
+[underline]Texto[/underline]
+
+[bold]Text[/bold]
+
+[italic]Text[/italic]
+
+[#009]text[/color]
+
+[List]
+Ola mundo | Ola mundo | Yeah | Ola | MAMA
+[/List]
+
+[%http://site.com]text[/url]
+
+[src:image.jpg]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="nwsl">
+	<div class="nwslA">
+		<div class="nws-head">
+			<li class="nws-head-a">
+				<h3 class="nws-title">Titulo da noticia</h3>
+			</li>
+			<li class="nws-head-b">
+				<span class="nws-head-b-a">Publicado por Agostinho, ontem as 12h</span>
+			</li>	
+		</div>
+		<div class="nws-body">
+			<div class="nws-body-a">
+				O Tomcat é um servidor web Java, mais especificamente, um container de servlets. O Tomcat implementa, dentre outras de menor relevância, as tecnologias Java Servlet e JavaServer Pages (JSP) e não é um container Enterprise JavaBeans (EJB).[1]
+
+				Desenvolvido pela Apache Software Foundation, é distribuído como software livre. Hoje um projeto independente, foi criado dentro do Apache Jakarta e posteriormente separado, uma vez que o Jakarta foi concluído.[2]
+
+				Na época em que foi criado, foi oficialmente endossado pela Sun como a implementação de referência para as tecnologias Java Servlet e JavaServer Pages. Hoje, no entanto, a implementação de referência é o GlassFish.
+
+				Ele cobre parte da especificação Java EE com tecnologias como servlet e JSP, e tecnologias de apoio relacionadas como Realms e segurança, JNDI Resources e JDBC DataSources. Ele tem a capacidade de atuar também como servidor web, ou pode funcionar integrado a um servidor web dedicado como o Apache ou o IIS. Como servidor web, ele provê um servidor web HTTP puramente em Java.
+
+				O servidor inclui ferramentas para configuração e gerenciamento, o que também pode ser feito editando-se manualmente arquivos de configuração formatados em XML
+
+				<!-- BOX -->
+				<div class="nws-body-boxElemnt">
+					OLA PESSOAL
+				</div>
+				<!-- EndBOX -->
+				<span class="nws-body-italictext">Texto Italico</span>
+				<span class="nws-body-boldtext">Texto Negrito</span>
+				<span class="nws-body-underlinetext">Texto sublinhado</span>
+
+				<!-- LIST -->
+				<ul class="nws-body-listElement">
+					<li class="nws-body-listElement_opion">Segunda</li>
+					<li class="nws-body-listElement_opion">Segunda</li>
+					<li class="nws-body-listElement_opion">Segunda</li>
+					<li class="nws-body-listElement_opion">Segunda</li>
+				</ul>
+				<!-- ENDLIST -->
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+</div>
