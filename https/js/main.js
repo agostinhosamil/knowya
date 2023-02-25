@@ -13,8 +13,56 @@
     })
   }
 
+  function useValue(value) {
+    if (value instanceof Array) {
+      value = value.map(function (currentValue) {
+        return useValue(currentValue)
+      })
+    } else if (value instanceof Object) {
+      for (const key in value) {
+        value[key] = useValue(value[key])
+      }
+    } else if (typeof value === 'function') {
+      value = useFunction(value)
+    }
+
+    return value
+  }
+
+  function useFunction($function) {
+    return function () {
+      return $function.apply(this, arguments)
+    }
+  }
+
+  function __w(object, property, value = null) {
+    if (!('object' === typeof object && !!object)) {
+      throw new TypeError('context object must to be a valid object')
+    }
+
+    if (typeof 'str' === typeof property) {
+      object[property] = useValue(value)
+    } else if (property instanceof Object) {
+      for (const key in property) {
+        object[key] = useValue(property[key])
+      }
+    }
+  }
+
   function camel(str) {
     return str.charAt(0).toUpperCase() + str.slice(1, str.length)
+  }
+
+  const ComposerGradient = {
+    show: function (contentElement) {
+      const areaComposerGradient = document.querySelector('.areaComposerGradient')
+
+      if (areaComposerGradient && contentElement instanceof HTMLElement) {
+        areaComposerGradient.appendChild(contentElement)
+
+        areaComposerGradient.setAttribute('show', 'show')
+      }
+    }
   }
 
   /**
@@ -29,10 +77,101 @@
   function createImageViewer(props) {
 
     const photoViewerRef = {}
+    const photoViewerListRef = {}
+    const controlLeftElementContainerRef = {}
+    const controlRightElementContainerRef = {}
+
+    function resizeImageSource(image, props = {}) {
+      const imageSource = new URL(image.src)
+
+      imageSource.searchParams.set('width', props.width)
+      imageSource.searchParams.set('height', props.height)
+      imageSource.searchParams.set('view', 'normal')
+
+      image.src = imageSource.toString()
+    }
 
     function navigate(number) {
-      console.log(number)
+      const dataCurrentImageIndex = photoViewerRef.current.getAttribute('data-current-image-index')
+      const currentImageIndex = Number(!isNaN(dataCurrentImageIndex) && dataCurrentImageIndex || 0)
+      const selectedImageIndex = currentImageIndex + number
+
+      navigateTo(selectedImageIndex)
     }
+
+    function navigateTo(imageIndex) {
+      const targetImageElementQuery = 'li div img[data-index="' + imageIndex + '"]'
+
+      const selectedImages = photoViewerListRef.current.querySelectorAll('li div img.selected')
+      const targetImageElement = photoViewerListRef.current.querySelector(targetImageElementQuery)
+
+      if (imageIndex <= 0) {
+        controlLeftElementContainerRef.current.innerHTML = ''
+      } else {
+        controlLeftElementContainerRef.current.appendChild(controlLeftElement)
+      }
+
+      if (!(imageIndex + 1 < props.imageList.length)) {
+        controlRightElementContainerRef.current.innerHTML = ''
+      } else {
+        controlRightElementContainerRef.current.appendChild(controlRightElement)
+      }
+
+      if (imageIndex >= 0 && imageIndex < props.imageList.length) {
+        Array.from(selectedImages).forEach(function (selectedImage) {
+          selectedImage.classList.remove('selected')
+        })
+
+        if (targetImageElement) {
+          targetImageElement.classList.add('selected')
+        }
+
+        photoViewerRef.current.setAttribute('data-current-image-index', imageIndex)
+
+        const targetImageElementClone = targetImageElement.cloneNode()
+
+        resizeImageSource(targetImageElementClone, {
+          width: mainImageWidth,
+          height: mainImageHeight
+        })
+
+        mainImage.src = targetImageElementClone.src
+      }
+    }
+
+    const mainImage = props.image.cloneNode()
+
+    const mainImageIndex = props.imageList.indexOf(props.image)
+    const mainImageWidth = 540
+    const mainImageHeight = 540
+
+    const imageStyles = 'width: ' + mainImageWidth + 'px !important; height: ' + mainImageHeight + 'px !important'
+
+    // const mainImageSource = new URL(mainImage.src)
+
+    mainImage.adjustSizes({
+      width: mainImageWidth,
+      height: mainImageHeight
+    })
+
+    resizeImageSource(mainImage, {
+      width: mainImageWidth,
+      height: mainImageHeight
+    })
+
+    const controlLeftElement = createElement('img', {
+      'src': appConfig.rootPath + 'https/im/arrow-left.svg',
+      'onClick': function () {
+        navigate(-1)
+      }
+    })
+
+    const controlRightElement = createElement('img', {
+      'src': appConfig.rootPath + 'https/im/arrow-right.svg',
+      'onClick': function () {
+        navigate(1)
+      }
+    })
 
     // <div class="photo-viewer-container">
     //   <div class="photo-viewer-body">
@@ -79,30 +218,55 @@
     //   </div>
     // </div>
 
-    return createElement('div', { 'class': 'photo-viewer-container', 'ref': photoViewerRef },
+    return createElement('div', { 'class': 'photo-viewer-container', 'ref': photoViewerRef, 'data-current-image-index': mainImageIndex },
       createElement('div', { 'class': 'photo-viewer-body' },
-        createElement('div', { 'class': 'photo-viewer-control photo-viewer-control-left' },
-          createElement('img', {
-            'src': appConfig.rootPath + 'https/im/arrow-left.svg',
-            'onClick': function () {
-              navigate(-1)
-            }
-          })
+        createElement('div', { 'class': 'photo-viewer-control photo-viewer-control-left', 'ref': controlLeftElementContainerRef },
+          mainImageIndex >= 1 && controlLeftElement
         ),
-        createElement('div', { 'class': 'photo-viewer-control photo-viewer-control-right' },
-          createElement('img', {
-            'src': appConfig.rootPath + 'https/im/arrow-right.svg',
-            'onClick': function () {
-              navigate(1)
-            }
-          })
+        createElement('div', { 'class': 'photo-viewer-control photo-viewer-control-right', 'ref': controlRightElementContainerRef },
+          mainImageIndex + 1 < props.imageList.length && controlRightElement
         ),
 
         createElement('div', { 'class': 'photo-viewer-content' },
-          createElement('div', null, props.image)
+          createElement('div', { style: imageStyles }, mainImage)
         )
       ),
-      createElement('div', { 'class': 'photo-viewer-footer' })
+      createElement('div', { 'class': 'photo-viewer-footer' },
+        createElement('ul', { 'class': 'photo-viewer-list', 'ref': photoViewerListRef },
+          props.imageList.length >= 2 && props.imageList.map(function (currentImage, currentImageIndex) {
+            const currentImageClone = currentImage.cloneNode()
+
+            const currentImageClickHandler = function () {
+              const childImage = this.querySelector('img')
+
+              if (childImage) {
+                const childImageIndex = childImage.getAttribute('data-index')
+
+                if (!isNaN(navigateTo(Number(childImageIndex)))) {
+                  navigateTo(Number(childImageIndex))
+                }
+              }
+            }
+
+            currentImageClone.adjustSizes({
+              width: 60,
+              height: 60
+            })
+
+            currentImageClone.setAttribute('data-index', currentImageIndex)
+
+            if (mainImageIndex === currentImageIndex) {
+              currentImageClone.classList.add('selected')
+            }
+
+            return createElement('li', { 'class': 'photo-viewer-list-item' },
+              createElement('div', {
+                onClick: currentImageClickHandler
+              }, currentImageClone)
+            )
+          })
+        )
+      )
     )
   }
 
@@ -201,9 +365,42 @@
 
     const postImageHandlers = {
       clickHandler: function () {
-        console.log('click in a post image', this.parentNode)
+        const imageList = Array.from(this.parentNode.querySelectorAll('img'))
+
+        const imageViewer = createImageViewer({
+          image: this,
+          imageList: imageList
+        })
+
+        ComposerGradient.show(imageViewer)
       }
     }
+
+    function adjustImageSizes(imageElement) {
+      if (imageElement.hasAttribute('square')) {
+        imageElement.adjustSizes({
+          height: imageElement.width
+        })
+      }
+    }
+
+    function _windowResizeHandler() {
+      postElements.forEach(function (postElement) {
+        const postImages = postElement.querySelectorAll('img')
+
+        if (!(postImages && postImages.length >= 0)) {
+          return
+        }
+
+        postImages.forEach(function (postImage) {
+          adjustImageSizes(postImage)
+        })
+      })
+    }
+
+    window.addEventListener('resize', function () {
+      _windowResizeHandler.apply(this, arguments)
+    })
 
     postElements.forEach(function (postElement) {
 
@@ -216,6 +413,8 @@
       postImages.forEach(function (postImage) {
         Object.keys(postImageHandlers).forEach(function (key) {
           const event = key.replace(/Handler$/, '')
+
+          adjustImageSizes(postImage)
 
           if (typeof postImageHandlers[key] === 'function') {
             postImage.addEventListener(event, postImageHandlers[key])
@@ -235,7 +434,7 @@
         event.preventDefault()
 
         if (document.body.classList.contains('areaComposerFocus')) {
-          document.classList.remove('areaComposerFocus')
+          document.body.classList.remove('areaComposerFocus')
         }
 
         areaComposerGradient.removeAttribute('show')
@@ -247,5 +446,40 @@
         }
       })
     }
+  })
+
+  __d('WorkOnPageMainHeader', function () {
+    const headerElement = document.getElementById('header')
+
+    window.addEventListener('scroll', useFunction(function () {
+      if (headerElement) {
+        if (window.scrollY >= headerElement.offsetHeight + 10) {
+          headerElement.classList.add('fixed')
+        } else {
+          headerElement.classList.remove('fixed')
+        }
+      }
+    }))
+  })
+
+  __w(HTMLImageElement.prototype, 'adjustSizes', function (sizes) {
+    const imageUrl = new URL(this.src)
+
+    const width = sizes.width || sizes.w || undefined
+    const height = sizes.height || sizes.h || undefined
+
+    // this.style.cssText = 'height: ' + height + 'px !important; width: ' + width + 'px !important';
+
+    if (!isNaN(width)) {
+      this.style.cssText = this.style.cssText.replace(/width:\s*([0-9]+)px;?/i, '')
+      this.style.cssText = 'width:' + width + 'px !important;'
+    }
+
+    if (!isNaN(height)) {
+      this.style.cssText = this.style.cssText.replace(/height:\s*([0-9]+)px;?/i, '')
+      this.style.cssText = 'height:' + height + 'px !important;'
+    }
+
+    // this.src = imageUrl
   })
 }())

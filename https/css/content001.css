@@ -890,7 +890,7 @@ body.areaComposerFocus {
 
 body.areaComposerFocus .areaComposerGradient,
 .areaComposerGradient[show] {
-  display: block;
+  display: block !important;
 }
 
 body.areaComposerFocus form.-cmpsr {

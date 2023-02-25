@@ -34,7 +34,7 @@
       for (const key in props) {
         const keyFirstCharToUpper = [key.charAt(0).toUpperCase(), key.slice(1)].join('')
 
-        const propertySetter = ['set', keyFirstCharToUpper].join()
+        const propertySetter = ['set', keyFirstCharToUpper].join('')
 
         const eventNameRe = /^on/i
 
